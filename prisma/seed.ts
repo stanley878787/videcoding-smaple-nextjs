@@ -27,6 +27,9 @@ async function main() {
         image: "https://images.unsplash.com/photo-1556910110-a5a63dfd393c?w=400&h=400&fit=crop",
         category: ProductCategory.DRINK,
         isAvailable: true,
+        isPopular: true,
+        isBreakfast: true,
+        isDinner: false,
       },
       {
         name: "Egg Crepe",
@@ -36,6 +39,9 @@ async function main() {
         image: "https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=400&h=400&fit=crop",
         category: ProductCategory.MAIN,
         isAvailable: true,
+        isPopular: true,
+        isBreakfast: true,
+        isDinner: false,
       },
       {
         name: "Radish Cake",
@@ -45,6 +51,9 @@ async function main() {
         image: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&h=400&fit=crop",
         category: ProductCategory.MAIN,
         isAvailable: true,
+        isPopular: false,
+        isBreakfast: true,
+        isDinner: true,
       },
       {
         name: "Fried Dough Stick",
@@ -54,6 +63,9 @@ async function main() {
         image: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&h=400&fit=crop",
         category: ProductCategory.MAIN,
         isAvailable: true,
+        isPopular: false,
+        isBreakfast: true,
+        isDinner: false,
       },
       {
         name: "Black Tea",
@@ -63,6 +75,9 @@ async function main() {
         image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&h=400&fit=crop",
         category: ProductCategory.DRINK,
         isAvailable: true,
+        isPopular: true,
+        isBreakfast: true,
+        isDinner: true,
       },
       {
         name: "Rice Ball",
@@ -72,6 +87,9 @@ async function main() {
         image: "https://images.unsplash.com/photo-1609501676725-7186f017a4b7?w=400&h=400&fit=crop",
         category: ProductCategory.MAIN,
         isAvailable: true,
+        isPopular: false,
+        isBreakfast: true,
+        isDinner: false,
       },
       {
         name: "Steamed Bun",
@@ -81,6 +99,9 @@ async function main() {
         image: "https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?w=400&h=400&fit=crop",
         category: ProductCategory.SIDE,
         isAvailable: true,
+        isPopular: false,
+        isBreakfast: true,
+        isDinner: false,
       },
       {
         name: "Sweet Soy Milk",
@@ -90,6 +111,9 @@ async function main() {
         image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400&h=400&fit=crop",
         category: ProductCategory.DRINK,
         isAvailable: true,
+        isPopular: false,
+        isBreakfast: true,
+        isDinner: false,
       },
     ],
   });
