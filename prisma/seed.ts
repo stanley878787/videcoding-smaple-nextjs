@@ -111,9 +111,6 @@ async function main() {
         image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400&h=400&fit=crop",
         category: ProductCategory.DRINK,
         isAvailable: true,
-        isPopular: false,
-        isBreakfast: true,
-        isDinner: false,
       },
     ],
   });

@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/db/prisma";
 import { NextRequest, NextResponse } from "next/server";
+import { PaymentMethodType } from "@prisma/client";
 
 export async function POST(request: NextRequest) {
   try {
@@ -14,13 +15,13 @@ export async function POST(request: NextRequest) {
     }
 
     // Map payment method from frontend format to database enum
-    const paymentMethodMap: Record<string, string> = {
-      "line-pay": "CREDIT_CARD",
-      "apple-pay": "APPLE_PAY",
-      "credit-card": "CREDIT_CARD",
+    const paymentMethodMap: Record<string, PaymentMethodType> = {
+      "line-pay": PaymentMethodType.CREDIT_CARD, // 使用 Enum 成員
+      "apple-pay": PaymentMethodType.APPLE_PAY,
+      "credit-card": PaymentMethodType.CREDIT_CARD,
     };
 
-    const dbPaymentMethod = paymentMethodMap[paymentMethod] || "CREDIT_CARD";
+    const dbPaymentMethod = paymentMethodMap[paymentMethod] || PaymentMethodType.CREDIT_CARD;
 
     // Calculate subtotal from items
     const subtotal = items.reduce(

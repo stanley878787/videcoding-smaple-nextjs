@@ -28,6 +28,7 @@ export default async function Home() {
   const serializedProducts = products.map((p: typeof products[0]) => ({
     ...p,
     price: p.price.toString(),
+    nameZh: p.nameZh ?? "",
   }));
 
   return <ProductList products={serializedProducts} />;
