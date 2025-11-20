@@ -137,7 +137,7 @@ export default function CheckoutPage() {
     const pickupMinMin = 15;
     const pickupMinMax = 20;
     const pickupTime = `${pickupMinMin}-${pickupMinMax} 分鐘`;
-    
+
     const orderInfo = {
       orderNumber,
       pickupTime,
@@ -270,11 +270,10 @@ export default function CheckoutPage() {
             {/* LINE Pay */}
             <button
               onClick={() => setPaymentMethod("line-pay")}
-              className={`w-full p-3 rounded-lg border-2 transition flex items-center gap-3 ${
-                paymentMethod === "line-pay"
-                  ? "border-green-500 bg-green-50"
-                  : "border-border hover:border-green-300"
-              }`}
+              className={`w-full p-3 rounded-lg border-2 transition flex items-center gap-3 ${paymentMethod === "line-pay"
+                ? "border-green-500 bg-green-50"
+                : "border-border hover:border-green-300"
+                }`}
             >
               <div className="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center text-white font-bold">
                 L
@@ -289,11 +288,10 @@ export default function CheckoutPage() {
             {/* Apple Pay */}
             <button
               onClick={() => setPaymentMethod("apple-pay")}
-              className={`w-full p-3 rounded-lg border-2 transition flex items-center gap-3 ${
-                paymentMethod === "apple-pay"
-                  ? "border-gray-900 bg-gray-50"
-                  : "border-border hover:border-gray-300"
-              }`}
+              className={`w-full p-3 rounded-lg border-2 transition flex items-center gap-3 ${paymentMethod === "apple-pay"
+                ? "border-gray-900 bg-gray-50"
+                : "border-border hover:border-gray-300"
+                }`}
             >
               <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center text-white font-bold">
                 🍎
@@ -308,11 +306,10 @@ export default function CheckoutPage() {
             {/* Credit Card */}
             <button
               onClick={() => setPaymentMethod("credit-card")}
-              className={`w-full p-3 rounded-lg border-2 transition flex items-center gap-3 ${
-                paymentMethod === "credit-card"
-                  ? "border-blue-500 bg-blue-50"
-                  : "border-border hover:border-blue-300"
-              }`}
+              className={`w-full p-3 rounded-lg border-2 transition flex items-center gap-3 ${paymentMethod === "credit-card"
+                ? "border-blue-500 bg-blue-50"
+                : "border-border hover:border-blue-300"
+                }`}
             >
               <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center text-white font-bold">
                 💳

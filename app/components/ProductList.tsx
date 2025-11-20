@@ -1,5 +1,7 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useState, useMemo } from "react";
@@ -91,7 +93,7 @@ export default function ProductList({ products }: ProductListProps) {
             <Link href="/orders">
               <button className="relative p-2 bg-white rounded-full shadow hover:shadow-md transition" title="查看歷史訂單">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" fill="#111827"/>
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" fill="#111827" />
                 </svg>
               </button>
             </Link>
@@ -113,25 +115,22 @@ export default function ProductList({ products }: ProductListProps) {
         <div className="flex gap-2 mb-4 flex-wrap">
           <button
             onClick={() => setCategory("popular")}
-            className={`px-3 py-1 rounded-full text-sm transition ${
-              category === "popular" ? "bg-amber-400 text-white" : "bg-white text-foreground"
-            }`}
+            className={`px-3 py-1 rounded-full text-sm transition ${category === "popular" ? "bg-amber-400 text-white" : "bg-white text-foreground"
+              }`}
           >
             熱門商品
           </button>
           <button
             onClick={() => setCategory("breakfast")}
-            className={`px-3 py-1 rounded-full text-sm transition ${
-              category === "breakfast" ? "bg-amber-400 text-white" : "bg-white text-foreground"
-            }`}
+            className={`px-3 py-1 rounded-full text-sm transition ${category === "breakfast" ? "bg-amber-400 text-white" : "bg-white text-foreground"
+              }`}
           >
             早餐
           </button>
           <button
             onClick={() => setCategory("dinner")}
-            className={`px-3 py-1 rounded-full text-sm transition ${
-              category === "dinner" ? "bg-amber-400 text-white" : "bg-white text-foreground"
-            }`}
+            className={`px-3 py-1 rounded-full text-sm transition ${category === "dinner" ? "bg-amber-400 text-white" : "bg-white text-foreground"
+              }`}
           >
             晚餐
           </button>
@@ -139,37 +138,61 @@ export default function ProductList({ products }: ProductListProps) {
 
         {/* List */}
         <section className="space-y-3 pb-32">
-          {filtered.map((product) => (
-            <div key={product.id} className="bg-white rounded-xl shadow-sm p-3 flex items-center gap-3">
-              <img src={product.image} alt={product.nameZh} className="w-20 h-20 rounded-lg object-cover flex-shrink-0" />
-              <div className="flex-1">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <h3 className="font-semibold">{product.nameZh}</h3>
-                    <p className="text-sm text-muted-foreground mt-1">{product.description}</p>
+          <motion.div
+            key={category}
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.1
+                }
+              }
+            }}
+          >
+            {filtered.map((product) => (
+              <motion.div
+                key={product.id}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0 }
+                }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="bg-white rounded-xl shadow-sm p-3 flex items-center gap-3 mb-3"
+              >
+                <img src={product.image} alt={product.nameZh} className="w-20 h-20 rounded-lg object-cover flex-shrink-0" />
+                <div className="flex-1">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h3 className="font-semibold">{product.nameZh}</h3>
+                      <p className="text-sm text-muted-foreground mt-1">{product.description}</p>
+                    </div>
+                  </div>
+                  <div className="mt-3 flex items-center justify-between">
+                    <div className="font-semibold">${price(product.price).toFixed(2)}</div>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => decQty(product.id)}
+                        className="w-8 h-8 bg-[#f3eede] rounded-full flex items-center justify-center hover:bg-[#e6e1d1] transition-colors"
+                      >
+                        -
+                      </button>
+                      <div className="min-w-[24px] text-center">{selectedQty[product.id] ?? 0}</div>
+                      <button
+                        onClick={() => incQty(product.id)}
+                        className="w-8 h-8 bg-[#f3eede] rounded-full flex items-center justify-center hover:bg-[#e6e1d1] transition-colors"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <div className="mt-3 flex items-center justify-between">
-                  <div className="font-semibold">${price(product.price).toFixed(2)}</div>
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => decQty(product.id)}
-                      className="w-8 h-8 bg-[#f3eede] rounded-full flex items-center justify-center"
-                    >
-                      -
-                    </button>
-                    <div className="min-w-[24px] text-center">{selectedQty[product.id] ?? 0}</div>
-                    <button
-                      onClick={() => incQty(product.id)}
-                      className="w-8 h-8 bg-[#f3eede] rounded-full flex items-center justify-center"
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+              </motion.div>
+            ))}
+          </motion.div>
         </section>
 
         {/* Bottom checkout bar */}
